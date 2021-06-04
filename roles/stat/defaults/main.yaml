@@ -1,0 +1,4 @@
+---
+volume_path: "/dev/sda"
+file_path: "/etc/profile"
+apache_path: "/usr/sbin/apache2"

@@ -1,0 +1,48 @@
+---
+#- name: check volume_path
+ # stat:
+  #  path: "{{ volume_path }}"
+ # register: vp
+
+- name: check "{{ file_path }}"
+  stat:
+    path: "{{ file_path }}"
+  register: fp
+
+- debug:
+    msg: "{{ fp }}"
+
+- name: cat "{{ file_path }}"
+  shell: cat "{{ file_path }}"
+  register: fpp
+  when: fp.stat.pw_name is defined and fp.stat.pw_name
+
+- name: output command
+  debug:
+    msg: "{{ fpp.stdout_lines }}"
+
+- name: check directory
+  stat: 
+    path: /tmp
+  register: vp
+
+- debug:
+    msg: "{{ vp }}"
+
+- name: directory check
+  shell: ls /tmp
+  register: dr
+  when: vp.stat.exists is defined and vp.stat.exists
+
+- debug:
+    msg: "{{ dr.stdout_lines }}"
+
+#- name: fdisk output
+ # shell: fdisk -l "{{ volume_path }}"
+  #register: fd
+ # when: vp.stat.isblk is defined and vp.stat.isblk
+
+#- name: shell output
+#- debug:
+ #   msg: "{{ fd.stdout_lines }}"
+ # when: vp.stat.isblk is defined and vp.stat.isblk
