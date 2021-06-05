@@ -21,3 +21,9 @@
   roles:
     - role: stat
   tags: stat
+
+- hosts: database
+  become: yes
+  roles:
+    - role: database
+  tags: db

@@ -1,0 +1,16 @@
+---
+- name: db.conf dosyasini kopyalama
+  copy:
+    src: db.conf
+    dest: /etc/db.conf
+    owner: root
+    group: root
+    mode: 0600
+
+- name: db.passwd dosyasini kopyalama
+  template:
+    src: db.passwd.j2
+    dest: /etc/db.passwd
+    owner: root
+    group: root
+    mode: 0600
